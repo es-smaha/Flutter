@@ -1,0 +1,100 @@
+// Copyright 2018 The Flutter team. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget { 
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+   
+    return MaterialApp(
+      title: 'Blog',
+      theme:ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+
+      
+      ) ,
+      home: Myhomepage(),
+    );
+  }
+}
+
+
+
+class Myhomepage extends StatelessWidget{
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Scaffold(
+      appBar: AppBar(title : Text('hellow World')),
+     // body:Row(children: <Widget>[Textwidget(),Textwidget()]),
+      body:TextInputWiget()
+
+    
+    
+    );
+ 
+  }
+
+}
+
+
+
+class Textwidget extends StatelessWidget{
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Text("hello word");
+ 
+  }
+
+}
+// stful
+class TextInputWiget  extends StatefulWidget {
+
+  @override
+  _TextInputWigetState createState() => _TextInputWigetState();
+}
+
+class _TextInputWigetState extends State<TextInputWiget> {
+  final controller = TextEditingController();
+  String text  = ""; 
+
+  void changeText(text){
+    setState(() {
+       this.text= text;
+    });
+   
+  }
+  @override 
+  void dispose(){
+    super.dispose();
+    controller.dispose();
+  }
+
+ 
+  @override 
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        TextField(
+         controller: this.controller,
+         decoration : InputDecoration(prefixIcon:Icon(Icons.message) , labelText: "type a message"),
+         onChanged: (text) => this.changeText(text) ,
+         ),
+
+        Text(this.text)
+      ]
+     );
+  }
+} 
